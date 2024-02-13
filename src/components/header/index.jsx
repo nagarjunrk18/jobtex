@@ -869,8 +869,11 @@ function Header({ clname = "", handleMobile }) {
                   </div>
                 </div>
                 <div className="header-customize-item account">
-                  <img src={avt} alt="" />
+                <Link to="/logout">
+                <img src={avt} alt="" />
                   <div className="name">Candidates</div>
+                  </Link>
+                 
       
                 </div>
                 <div className="header-customize-item button">

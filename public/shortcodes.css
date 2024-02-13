@@ -12306,3 +12306,6 @@ input[type="number"]::-webkit-inner-spin-button {
   break-inside: avoid;
 
 }
+.custom_margin{
+  margin-right: auto;
+}

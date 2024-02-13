@@ -13,6 +13,11 @@ import Gallery from "../components/popup/Gallery";
 import { Collapse } from "react-collapse";
 import logo from "../assets/images/logo.png";
 import Header4 from "../components/header/Header4";
+import { Modal, Button, FormLabel } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import monthsjson from "../json/months.json";
 
 Candidatesingle_v1.propTypes = {};
 
@@ -25,6 +30,55 @@ function Candidatesingle_v1(props) {
     status: false,
   });
   const [isShowMobile, setShowMobile] = useState(false);
+  // model for about
+  const [addAbout, setAddAbout] = useState(false);
+  const [editAbout, setEditAbout] = useState(false);
+
+  const openAddAbout = () => setAddAbout(true);
+  const closeAddAbout = () => setAddAbout(false);
+
+  const openEditAbout = () => setEditAbout(true);
+  const closeEditAbout = () => setEditAbout(false);
+
+  //model for education
+  const [addEducation, setAddEducation] = useState(false);
+  const [editEducation, setEditEducation] = useState(false);
+
+  const openAddEducation = () => setAddEducation(true);
+  const closeAddEducation = () => setAddEducation(false);
+
+  const openEditEducation = () => setEditEducation(true);
+  const closeEditEducation = () => setEditEducation(false);
+
+  //model for experience
+  const [addExperience, setAddExperience] = useState(false);
+  const [editExperience, setEditExperience] = useState(false);
+
+  const openAddExperience = () => setAddExperience(true);
+  const closeAddExperience = () => setAddExperience(false);
+
+  const openEditExperience = () => setEditExperience(true);
+  const closeEditExperience = () => setEditExperience(false);
+
+  //model for skills
+  const [addSkill, setAddSkill] = useState(false);
+  const [editSkill, setEditSkill] = useState(false);
+
+  const openAddSkill = () => setAddSkill(true);
+  const closeAddSkill = () => setAddSkill(false);
+
+  const openEditSkill = () => setEditSkill(true);
+  const closeEditSkill = () => setEditSkill(false);
+
+  //model for Career Break
+  const [addCareerBreak, setAddCareerBreak] = useState(false);
+  const [editCareerBreak, setEditCareerBreak] = useState(false);
+
+  const openAddCareerBreak = () => setAddCareerBreak(true);
+  const closeAddCareerBreak = () => setAddCareerBreak(false);
+
+  const openEditCareerBreak = () => setEditCareerBreak(true);
+  const closeEditCareerBreak = () => setEditCareerBreak(false);
 
   const handleToggle = (key) => {
     if (toggle.key === key) {
@@ -36,6 +90,34 @@ function Candidatesingle_v1(props) {
         status: true,
         key,
       });
+    }
+  };
+
+  const custon_margin = {
+    marginTop: "24px",
+    // Add more style properties as needed
+  };
+
+  //month
+  const months = monthsjson.months;
+
+  //years
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 100 }, (_, index) => currentYear - index);
+
+  //file upload
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleFileUpload = () => {
+    if (selectedFile) {
+      // You can perform further actions like uploading the file to a server here
+      console.log("Selected file:", selectedFile);
+    } else {
+      console.log("No file selected");
     }
   };
 
@@ -597,7 +679,25 @@ function Candidatesingle_v1(props) {
                 </TabList>
                 <div className="content-tab">
                   <TabPanel className="inner-content animation-tab">
-                    <h5>About me</h5>
+                    <div class="d-flex">
+                      <div class="p-2 custom_margin">
+                        <h5>About me</h5>
+                      </div>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openAddAbout}>
+                          <i class="icon-plus"></i>
+                        </a>
+                      </div>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openEditAbout}>
+                          <i class="bi bi-pencil"></i>
+                        </a>
+                      </div>
+                      {/*  <div class="p-2 bg-primary">Flex item 3</div> */}
+                    </div>
+
                     <p>
                       Are you a User Experience Designer with a track record of
                       delivering intuitive digital experiences that drive
@@ -605,7 +705,7 @@ function Candidatesingle_v1(props) {
                       thinker who can concept and craft smart, world-class
                       campaigns across a variety of mediums?
                     </p>
-                    <p className="mg-39">
+                    {/*  <p className="mg-39">
                       Deloitte's Green Dot Agency is looking to add a Lead User
                       Experience Designer to our experience design team. We want
                       a passionate creative who's inspired by new trends and
@@ -615,8 +715,918 @@ function Candidatesingle_v1(props) {
                       deliver beautifully designed, leading-edge experiences
                       under tight deadlines; and who has demonstrated proven
                       expertise.
-                    </p>
-                    <h5>Education</h5>
+                    </p> */}
+                    {/* Button to open the modal */}
+
+                    {/* Modal component */}
+                    <Modal show={addAbout} onHide={closeAddAbout}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Add about</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip out group-note">
+                                  <label>
+                                    You can write about your years of
+                                    experience, industry, or skills. People also
+                                    talk about their achievements or previous
+                                    job experiences
+                                  </label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="editabttxtarea"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeAddAbout}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={closeAddAbout}>
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <Modal show={editAbout} onHide={closeEditAbout}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Edit about</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip out group-note">
+                                  <label>
+                                    You can write about your years of
+                                    experience, industry, or skills. People also
+                                    talk about their achievements or previous
+                                    job experiences
+                                  </label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="addabttxtarea"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeEditAbout}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={closeEditAbout}>
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+
+                    <div class="d-flex">
+                      <div class="p-2 custom_margin">
+                        <h5>Education</h5>
+                      </div>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openAddEducation}>
+                          <i class="icon-plus"></i>
+                        </a>
+                      </div>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openEditEducation}>
+                          <i class="bi bi-pencil"></i>
+                        </a>
+                      </div>
+                      {/*  <div class="p-2 bg-primary">Flex item 3</div> */}
+                    </div>
+                    <Modal show={addEducation} onHide={closeAddEducation}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Add education</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>School</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Boston University"
+                                    id="addeduscl"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Degree</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Bachelor's"
+                                    id="addedudegree"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Field of study</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="addedufieldofstudy"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>Start date</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addedusdatemonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((a) => (
+                                      <option key={a.value} value={a.value}>
+                                        {a.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addedusdateyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index1) => (
+                                      <option
+                                        key={`year${index1}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>End date (or expected)</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addeduendmonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((b) => (
+                                      <option key={b.value} value={b.value}>
+                                        {b.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addeduendyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index2) => (
+                                      <option
+                                        key={`year${index2}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Grade</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Bachelor's"
+                                    id="addedugrade"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Activities and societies</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="addeduactivities"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Description</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="addedudescription"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeAddEducation}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={closeAddEducation}>
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <Modal show={editEducation} onHide={closeEditEducation}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Edit education</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>School</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Boston University"
+                                    id="editeduscl"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Degree</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Bachelor's"
+                                    id="editedudegree"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Field of study</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="editedufieldofstudy"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>Start date</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editedusdatemonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((c) => (
+                                      <option key={c.value} value={c.value}>
+                                        {c.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editedusdateyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index3) => (
+                                      <option
+                                        key={`year${index3}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>End date (or expected)</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editeduendmonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((d) => (
+                                      <option key={d.value} value={d.value}>
+                                        {d.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editeduendyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index4) => (
+                                      <option
+                                        key={`year${index4}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Grade</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Bachelor's"
+                                    id="editedugrade"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Activities and societies</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="editeduactivities"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Description</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="editedudescription"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeEditEducation}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={closeEditEducation}>
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <div className="group-infor">
+                      <div className="inner">
+                        <div className="sub-heading">
+                          FPT University <span>2019 - 2021</span>
+                        </div>
+                        <div className="heading">Graphic Design</div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Nunc vulputate libero et velit interdum, ac
+                          aliquet odio mattis. Class aptent taciti sociosqu ad
+                          litora torquent per conubia nostra, per inceptos
+                          himenaeos.
+                        </p>
+                      </div>
+                      <div className="inner">
+                        <div className="sub-heading">
+                          TB Course <span>2019 - 2021</span>
+                        </div>
+                        <div className="heading">UX Design</div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Nunc vulputate libero et velit interdum, ac
+                          aliquet odio mattis. Class aptent taciti sociosqu ad
+                          litora torquent per conubia nostra, per inceptos
+                          himenaeos.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex">
+                      <div class="p-2 custom_margin">
+                        <h5>Experience</h5>
+                      </div>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openAddExperience}>
+                          <i class="icon-plus"></i>
+                        </a>
+                      </div>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openEditExperience}>
+                          <i class="bi bi-pencil"></i>
+                        </a>
+                      </div>
+                      {/*  <div class="p-2 bg-primary">Flex item 3</div> */}
+                    </div>
+                    <Modal show={addExperience} onHide={closeAddExperience}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Add experience</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Title*</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="addexptitle"
+                                    required
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Employment type</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addexpemptype"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Company name*</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="addexpcmname"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Location</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="addexplocation"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Location type</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addexplocationtype"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <input
+                                    type="checkbox"
+                                    className="mr-3"
+                                    id="addexpworkingrole"
+                                  />
+                                  <label>
+                                    {" "}
+                                    I am currently working in this roles
+                                  </label>
+                                </div>
+                              </Col>
+
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>Start date</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addexpsdatemonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((c) => (
+                                      <option key={c.value} value={c.value}>
+                                        {c.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addexpsdateyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index3) => (
+                                      <option
+                                        key={`year${index3}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>End date (or expected)</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addexpendmonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((d) => (
+                                      <option key={d.value} value={d.value}>
+                                        {d.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addexpendyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index4) => (
+                                      <option
+                                        key={`year${index4}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Industry*</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="addexpindustry"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Description</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="addexpdescription"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Profile headline</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="addexpproheadline"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div class="p-2">
+                                  <h6>Skills</h6>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>
+                                    We recommend adding your top 5 used in this
+                                    role. They’ll also appear in your Skills
+                                    section.
+                                  </label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addexpskill"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div class="p-2">
+                                  <h6>Media</h6>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>
+                                    Add media like images, documents, sites or
+                                    presentations
+                                  </label>
+                                  <input
+                                    type="file"
+                                    onChange={handleFileChange}
+                                    id="addexpfileupload"
+                                  />
+                                  <button onClick={handleFileUpload}>
+                                    Upload
+                                  </button>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeAddExperience}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={closeAddExperience}>
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <Modal show={editExperience} onHide={closeEditExperience}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Edit experience</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Title*</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="editexptitle"
+                                    required
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Employment type</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editexpemptype"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Company name*</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="editexpcmname"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Location</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="editexplocation"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Location type</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editexplocationtype"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <input
+                                    type="checkbox"
+                                    className="mr-3"
+                                    id="editexpworkingrole"
+                                  />
+                                  <label>
+                                    {" "}
+                                    I am currently working in this roles
+                                  </label>
+                                </div>
+                              </Col>
+
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>Start date</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editexpsdatemonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((c) => (
+                                      <option key={c.value} value={c.value}>
+                                        {c.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editexpsdateyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index3) => (
+                                      <option
+                                        key={`year${index3}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>End date (or expected)</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editexpendmonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((d) => (
+                                      <option key={d.value} value={d.value}>
+                                        {d.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editexpendyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index4) => (
+                                      <option
+                                        key={`year${index4}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Industry*</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="editexpindustry"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Description</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="editexpdescription"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Profile headline</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="editexpproheadline"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div class="p-2">
+                                  <h6>Skills</h6>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>
+                                    We recommend adding your top 5 used in this
+                                    role. They’ll also appear in your Skills
+                                    section.
+                                  </label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editexpskill"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div class="p-2">
+                                  <h6>Media</h6>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>
+                                    Add media like images, documents, sites or
+                                    presentations
+                                  </label>
+                                  <input
+                                    type="file"
+                                    onChange={handleFileChange}
+                                    id="editexpfileupload"
+                                  />
+                                  <button onClick={handleFileUpload}>
+                                    Upload
+                                  </button>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeEditExperience}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={closeEditExperience}>
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+
                     <div className="group-infor">
                       <div className="inner">
                         <div className="sub-heading">
@@ -646,39 +1656,476 @@ function Candidatesingle_v1(props) {
                       </div>
                     </div>
 
-                    <h5>Experience</h5>
-                    <div className="group-infor">
-                      <div className="inner">
-                        <div className="sub-heading">
-                          FPT University <span>2019 - 2021</span>
-                        </div>
-                        <div className="heading">Graphic Design</div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Nunc vulputate libero et velit interdum, ac
-                          aliquet odio mattis. Class aptent taciti sociosqu ad
-                          litora torquent per conubia nostra, per inceptos
-                          himenaeos.
-                        </p>
+                    <div class="d-flex">
+                      <div class="p-2 custom_margin">
+                        <h5>Career Break</h5>
                       </div>
-                      <div className="inner">
-                        <div className="sub-heading">
-                          TB Course <span>2019 - 2021</span>
-                        </div>
-                        <div className="heading">UX Design</div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Nunc vulputate libero et velit interdum, ac
-                          aliquet odio mattis. Class aptent taciti sociosqu ad
-                          litora torquent per conubia nostra, per inceptos
-                          himenaeos.
-                        </p>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openAddCareerBreak}>
+                          <i class="icon-plus"></i>
+                        </a>
+                      </div>
+                      <div class="p-2 ">
+                        {" "}
+                        <a onClick={openEditCareerBreak}>
+                          <i class="bi bi-pencil"></i>
+                        </a>
                       </div>
                     </div>
+
+                    <Modal show={addCareerBreak} onHide={closeAddCareerBreak}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Add CareerBreak</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <p>
+                                    Experiences outside a linear career path can
+                                    make people better colleagues, thought
+                                    partners, and leaders. Share these moments
+                                    that make you unique.
+                                  </p>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Type</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addcarbrktype"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Location</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="addcarbrklocation"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <input
+                                    type="checkbox"
+                                    className="mr-3"
+                                    id="addcarbrkcheck"
+                                  />
+                                  <label>
+                                    {" "}
+                                    I am currently on this career break
+                                  </label>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>Start date</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addcarbrksdatemonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((c) => (
+                                      <option key={c.value} value={c.value}>
+                                        {c.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addcarbrksdateyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index3) => (
+                                      <option
+                                        key={`year${index3}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>End date (or expected)</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addcarbrkendmonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((d) => (
+                                      <option key={d.value} value={d.value}>
+                                        {d.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="addcarbrkendyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index4) => (
+                                      <option
+                                        key={`year${index4}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Description</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="addcarbrkdescription"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Profile headline</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Retail"
+                                    id="addcarbrkproheadline"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div class="p-2">
+                                  <h6>Media</h6>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>
+                                    Add media like images, documents, sites or
+                                    presentations
+                                  </label>
+                                  <input
+                                    type="file"
+                                    onChange={handleFileChange}
+                                    id="addcarbrkfileupload"
+                                  />
+                                  <button onClick={handleFileUpload}>
+                                    Upload
+                                  </button>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeAddCareerBreak}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={closeAddCareerBreak}>
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <Modal show={editCareerBreak} onHide={closeEditCareerBreak}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Edit CareerBreak</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        {/* Content for the modal */}
+                        <FormLabel>
+                          <form method="">
+                            <Row>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <p>
+                                    Experiences outside a linear career path can
+                                    make people better colleagues, thought
+                                    partners, and leaders. Share these moments
+                                    that make you unique.
+                                  </p>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Type</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editcarbrktype"
+                                  >
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                    <option>Select</option>
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Location</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Business"
+                                    id="editcarbrklocation"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <input
+                                    type="checkbox"
+                                    className="mr-3"
+                                    id="editcarbrkcheck"
+                                  />
+                                  <label>
+                                    {" "}
+                                    I am currently on this career break
+                                  </label>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>Start date</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editcarbrksdatemonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((c) => (
+                                      <option key={c.value} value={c.value}>
+                                        {c.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editcarbrksdateyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index3) => (
+                                      <option
+                                        key={`year${index3}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <label>End date (or expected)</label>
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editcarbrkendmonth"
+                                  >
+                                    <option>Select</option>
+                                    {months.map((d) => (
+                                      <option key={d.value} value={d.value}>
+                                        {d.name}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={6}>
+                                <div className="ip p-2">
+                                  <Form.Select
+                                    aria-label="Default select example"
+                                    id="editcarbrkendyr"
+                                    style={custon_margin}
+                                  >
+                                    <option>Select</option>
+                                    {years.map((year, index4) => (
+                                      <option
+                                        key={`year${index4}`}
+                                        value={year}
+                                      >
+                                        {year}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                </div>
+                              </Col>
+
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Description</label>
+                                  <textarea
+                                    placeholder="Write note"
+                                    id="editcarbrkdescription"
+                                  ></textarea>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>Profile headline</label>
+                                  <input
+                                    type="text"
+                                    placeholder="EX: Retail"
+                                    id="editcarbrkproheadline"
+                                  />
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div class="p-2">
+                                  <h6>Media</h6>
+                                </div>
+                              </Col>
+                              <Col xs={12} md={12}>
+                                <div className="ip p-2">
+                                  <label>
+                                    Add media like images, documents, sites or
+                                    presentations
+                                  </label>
+                                  <input
+                                    type="file"
+                                    onChange={handleFileChange}
+                                    id="editcarbrkfileupload"
+                                  />
+                                  <button onClick={handleFileUpload}>
+                                    Upload
+                                  </button>
+                                </div>
+                              </Col>
+                            </Row>
+                          </form>
+                        </FormLabel>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="danger" onClick={closeEditCareerBreak}>
+                          Close
+                        </Button>
+                        <Button
+                          variant="primary"
+                          onClick={closeEditCareerBreak}
+                        >
+                          Save
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
 
                     <div className="group-skill group-col-2" ref={progressRef}>
                       <div className="inner cl2">
-                        <h5>management skills</h5>
+                        <div class="d-flex">
+                          <div class="p-2 custom_margin">
+                            <h5>management skills</h5>
+                          </div>
+                          <div class="p-2 ">
+                            {" "}
+                            <a onClick={openAddSkill}>
+                              <i class="icon-plus"></i>
+                            </a>
+                          </div>
+                          <div class="p-2 ">
+                            {" "}
+                            <a onClick={openEditSkill}>
+                              <i class="bi bi-pencil"></i>
+                            </a>
+                          </div>
+                        </div>
+
+                        <Modal show={addSkill} onHide={closeAddSkill}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>Add skills</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            {/* Content for the modal */}
+                            <FormLabel>
+                              <form method="">
+                                <Row>
+                                  <Col xs={12} md={12}>
+                                    <div className="ip p-2">
+                                      <label>Skill</label>
+                                      <Form.Select
+                                        aria-label="Default select example"
+                                        id="addskillsskil"
+                                      >
+                                        <option>Select</option>
+                                        <option>Select</option>
+                                        <option>Select</option>
+                                      </Form.Select>
+                                    </div>
+                                  </Col>
+                                </Row>
+                              </form>
+                            </FormLabel>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button variant="danger" onClick={closeAddSkill}>
+                              Close
+                            </Button>
+                            <Button variant="primary" onClick={closeAddSkill}>
+                              Save
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
+                        <Modal show={editSkill} onHide={closeEditSkill}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>Edit skills</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            {/* Content for the modal */}
+                            <FormLabel>
+                              <form method="">
+                                <Row>
+                                  <Col xs={12} md={12}>
+                                    <div className="ip p-2">
+                                      <label>Skill</label>
+                                      <Form.Select
+                                        aria-label="Default select example"
+                                        id="editskillsskil"
+                                      >
+                                        <option>Select</option>
+                                        <option>Select</option>
+                                        <option>Select</option>
+                                      </Form.Select>
+                                    </div>
+                                  </Col>
+                                </Row>
+                              </form>
+                            </FormLabel>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button variant="danger" onClick={closeEditSkill}>
+                              Close
+                            </Button>
+                            <Button variant="primary" onClick={closeEditSkill}>
+                              Save
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
                         <div className="wd-cv-skill">
                           <div className="progress-item">
                             <div className="progress-heading">
@@ -783,6 +2230,94 @@ function Candidatesingle_v1(props) {
                         <button>Send Private Message</button>
                       </form>
                     </div>
+                    {/*   <h5>Experience</h5>
+                    <div className="group-infor">
+                      <div className="inner">
+                        <div className="sub-heading">
+                          FPT University <span>2019 - 2021</span>
+                        </div>
+                        <div className="heading">Graphic Design</div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Nunc vulputate libero et velit interdum, ac
+                          aliquet odio mattis. Class aptent taciti sociosqu ad
+                          litora torquent per conubia nostra, per inceptos
+                          himenaeos.
+                        </p>
+                      </div>
+                      <div className="inner">
+                        <div className="sub-heading">
+                          TB Course <span>2019 - 2021</span>
+                        </div>
+                        <div className="heading">UX Design</div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Nunc vulputate libero et velit interdum, ac
+                          aliquet odio mattis. Class aptent taciti sociosqu ad
+                          litora torquent per conubia nostra, per inceptos
+                          himenaeos.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="group-skill group-col-2" ref={progressRef}>
+                      <div className="inner cl2">
+                        <h5>management skills</h5>
+                        <div className="wd-cv-skill">
+                          <div className="progress-item">
+                            <div className="progress-heading">
+                              <div className="heading-progress">HTML & cSS</div>
+                              <Progress targetHeight={targetHeight} done="60" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="wd-cv-skill">
+                          <div className="progress-item">
+                            <div className="progress-heading">
+                              <div className="heading-progress">word</div>
+                              <Progress targetHeight={targetHeight} done="90" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="wd-cv-skill">
+                          <div className="progress-item">
+                            <div className="progress-heading">
+                              <div className="heading-progress">Excel</div>
+                              <Progress targetHeight={targetHeight} done="90" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="inner cl2">
+                        <h5>Design</h5>
+                        <div className="wd-cv-skill">
+                          <div className="progress-item">
+                            <div className="progress-heading">
+                              <div className="heading-progress">Figma</div>
+                              <Progress targetHeight={targetHeight} done="80" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="wd-cv-skill">
+                          <div className="progress-item">
+                            <div className="progress-heading">
+                              <div className="heading-progress">Photoshop</div>
+                              <Progress targetHeight={targetHeight} done="70" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="wd-cv-skill">
+                          <div className="progress-item">
+                            <div className="progress-heading">
+                              <div className="heading-progress">
+                                Ilustration
+                              </div>
+                              <Progress targetHeight={targetHeight} done="90" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> */}
                   </TabPanel>
                   <TabPanel className="inner-content animation-tab">
                     <h5>About me</h5>

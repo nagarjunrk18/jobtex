@@ -8,12 +8,15 @@ import { Link, NavLink } from "react-router-dom";
 HeaderHome2.propTypes = {};
 
 function HeaderHome2({ clname = "", handleMobile }) {
+ // alert("hazi")
   const [activeIndex, setActiveIndex] = useState(null);
   const handleDropdown = (index) => {
     setActiveIndex(index);
+   // alert("hazi")
   };
 
   return (
+    
     <header id="header" className="header header-default">
       <div className="tf-container">
         <div className="row">
@@ -456,8 +459,62 @@ function HeaderHome2({ clname = "", handleMobile }) {
                   </div>
                 </div>
                 <div className="header-customize-item account">
+                 {/*  <img src={avt} alt="" />
+                   <div className="name">Candidates</div>  */}
+                  <div className="header-customize-item bell">
                   <img src={avt} alt="" />
-                  <div className="name">Candidates</div>
+                  <div className="sub-notification">
+                    <div className="sub-notification-heading">
+                      <div className="sub-notification-title">Candidates</div>
+                      <span>5 New</span>
+                    </div>
+                    <div className="sub-notification-content">
+                      <div className="sub-notification-item icon-plus">
+                        <div className="time">Last day</div>
+                        <div className="content">
+                          Your submit job
+                          <span className="name">Graphic Design</span> is
+                          <span className="status">Success</span>
+                        </div>
+                      </div>
+                      <div className="sub-notification-item icon-plus">
+                        <div className="time">5 Day ago</div>
+                        <div className="content">
+                          A new application is submitted on your job
+                          <span className="name">Graphic Design</span> by
+                          <span className="name">Maverick Nguyen</span>
+                        </div>
+                      </div>
+                      <div className="sub-notification-item icon-plus">
+                        <div className="time">5 Day ago</div>
+                        <div className="content">
+                          A new application is submitted on your job
+                          <span className="name">Graphic Design</span> by
+                          <span className="name">Maverick Nguyen</span>
+                        </div>
+                      </div>
+                      <div className="sub-notification-item icon-plus">
+                        <div className="time">Last day</div>
+                        <div className="content">
+                          Your submit job{" "}
+                          <span className="name">Graphic Design</span> is
+                          <span className="status">Success</span>
+                        </div>
+                      </div>
+                      <div className="sub-notification-item icon-plus">
+                        <div className="time">5 Day ago</div>
+                        <div className="content">
+                          A new application is submitted on your job
+                          <span className="name">Graphic Design</span> by
+                          <span className="name">Maverick Nguyen</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="sub-notification-button">
+                      <Link to="#">Read All</Link>
+                    </div>
+                  </div>
+                </div>
                 </div>
                 <div className="header-customize-item button">
                   <Link to="/">Upload Resume</Link>

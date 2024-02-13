@@ -4,6 +4,8 @@ import RangeOne from "../range-slider";
 import SelectLocation from "../dropdown";
 import Dropdown from "react-dropdown";
 
+
+
 const select1 = [
   { value: "s1", label: "Design & Creative " },
   { value: "s2", label: "Design" },
