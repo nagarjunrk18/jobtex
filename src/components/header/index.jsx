@@ -868,13 +868,27 @@ function Header({ clname = "", handleMobile }) {
                     </div>
                   </div>
                 </div>
-                <div className="header-customize-item account">
-                <Link to="/logout">
-                <img src={avt} alt="" />
-                  <div className="name">Candidates</div>
-                  </Link>
-                 
-      
+
+                <div className="header-ct-center st-1">
+                  <div className="nav-wrap">
+                    <nav id="main-nav" className="main-nav">
+                      <ul id="menu-primary-menu" className="menu">
+                        <li className="menu-item menu-item-has-children">
+                          <div className="header-customize-item account">
+                            <Link to="">
+                              <img src={avt} alt="" />
+                              <div className="name">Candidates</div>
+                            </Link>
+                          </div>
+                          <ul className="sub-menu st1">
+                            <li className="nav-sub">
+                              <Link to="/login">Logout</Link>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
                 </div>
                 <div className="header-customize-item button">
                   <Link to="/">Upload Resume</Link>
